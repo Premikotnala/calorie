@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calorie Tracker</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-info">
+        <a href="{% url 'index' %}" class="navbar-brand">Home</a>
+        <div>
+            {% if user.is_authenticated %}
+                <span class="navbar-text text-white">Hello, {{ user.username }}</span>
+                <a href="{% url 'logout' %}" class="btn btn-light btn-sm">Logout</a>
+            {% else %}
+                <a href="{% url 'login' %}" class="btn btn-light btn-sm">Login</a>
+                <a href="{% url 'register' %}" class="btn btn-secondary btn-sm">Register</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
